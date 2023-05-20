@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  message-mediator-broker:
+    container_name: message-mediator-broker-container
+    image: eclipse-mosquitto:2.0.15
+    volumes:
+      - ./message-mediator-broker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    ports:
+      - 1883:1883
+      - 9001:9001
+    networks: 
+      - fresh-frontier-network
+  gateway-guardian-service:
+    container_name: gateway-guardian-service-container
+    image: pkalkman/gateway-guardian-service:0.0.8  
+    depends_on:
+      - message-mediator-broker
+    environment:
+      - BROKER_ADDRESS=message-mediator-broker
+    networks: 
+      - fresh-frontier-network
+  hello-helper-service:
+    container_name: hello-helper-service-container
+    image: pkalkman/hello-helper-service:0.0.1
+    depends_on:
+      - message-mediator-broker
+    environment:
+      - BROKER_ADDRESS=message-mediator-broker
+    networks: 
+      - fresh-frontier-network
+  gateexit-guardian-service:
+    container_name: gateexit-guardian-service-container
+    image: pkalkman/gateexit-guardian-service:0.0.2
+    depends_on:
+      - message-mediator-broker
+    environment:
+      - BROKER_ADDRESS=message-mediator-broker
+    networks: 
+      - fresh-frontier-network
+  inventory-intel-service:
+    container_name: inventory-intel-service-container
+    image: pkalkman/inventory-intel-service:0.0.2
+    depends_on:
+      - message-mediator-broker
+    environment:
+      - BROKER_ADDRESS=message-mediator-broker
+    networks: 
+      - fresh-frontier-network
+
+networks:
+  fresh-frontier-network:
