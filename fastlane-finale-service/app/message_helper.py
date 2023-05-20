@@ -27,3 +27,7 @@ class MessageHelper:
     def restock_alert(self, item_id, quantity):
         return json.dumps({"timestamp": self._current_datetime(),
                            "item_id": item_id, "quantity": quantity})
+
+    def payment_due(self, customer_id, amount):
+        return json.dumps({"timestamp": self._current_datetime(),
+                           "customer_id": customer_id, "amount": amount})

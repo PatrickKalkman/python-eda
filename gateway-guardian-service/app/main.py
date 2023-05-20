@@ -1,14 +1,12 @@
 import os
-from paho.mqtt import client as mqtt_client
-
 import random
 import signal
-from loguru import logger
-
 from threading import Event
 
-from mqtt_topic_helper import MqttTopicHelper
+from loguru import logger
 from message_helper import MessageHelper
+from mqtt_topic_helper import MqttTopicHelper
+from paho.mqtt import client as mqtt_client
 
 broker = os.getenv('BROKER_ADDRESS', 'localhost')
 port = 1883
@@ -38,11 +36,11 @@ def publish(client):
         topic = topic_helper.customer_arrival()
         message = message_helper.customer_arrival(customer_id)
 
-        logger.info(f"Publishing message to topic {topic}: {message}")
+        logger.info(f"Pub to {topic}: {message}")
         client.publish(topic, message)
 
         # Wait for a random interval between 2 and 20 seconds
-        running.wait(random.randint(2, 20))  # Use the Event's wait method instead of sleep
+        running.wait(random.randint(2, 20))  # Use the Event's wait() method
 
     client.disconnect()  # disconnect here when the loop is broken
 

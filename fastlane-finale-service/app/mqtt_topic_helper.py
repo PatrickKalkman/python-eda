@@ -20,3 +20,6 @@ class MqttTopicHelper:
 
     def restock_alert(self):
         return f"{self.chain_name}/{self.store_name}/restock-alert"
+
+    def payment_due(self):
+        return f"{self.chain_name}/{self.store_name}/payment-due"

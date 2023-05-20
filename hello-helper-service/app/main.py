@@ -1,10 +1,11 @@
 import os
 import signal
+
 import paho.mqtt.client as mqtt
-from loguru import logger
-from mqtt_topic_helper import MqttTopicHelper
-from message_parser import MessageParser
 from customer_name_db import CustomerNameDb
+from loguru import logger
+from message_parser import MessageParser
+from mqtt_topic_helper import MqttTopicHelper
 
 
 def on_connect(client, userdata, flags, rc):

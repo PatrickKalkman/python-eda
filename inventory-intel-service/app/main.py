@@ -3,11 +3,10 @@ import signal
 import time
 
 import paho.mqtt.client as mqtt
-from loguru import logger
-from mqtt_topic_helper import MqttTopicHelper
-from message_parser import MessageParser
 from inventory import Inventory
-
+from loguru import logger
+from message_parser import MessageParser
+from mqtt_topic_helper import MqttTopicHelper
 
 # Define MQTT client ID and Broker Address
 client_id = "inventory-intel-service"
@@ -39,8 +38,12 @@ def on_message(client, userdata, msg):
 
 def log_inventory():
     while True:
-        time.sleep(30)
-        logger.info(f"Current Inventory: {inventory.inventory}")
+        logger.info("Inventory Check:")
+        for product_id, product_info in inventory.inventory.items():
+            if int(product_info['stock']) < 100:
+                logger.info(f"Id: {product_id}, Pr: {product_info['name']}," +
+                            f"St: {product_info['stock']}")
+        time.sleep(60)
 
 
 def on_exit(signum, frame):

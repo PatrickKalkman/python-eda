@@ -1,14 +1,13 @@
 import os
 import random
-import time
 import signal
 import sys
+import time
 
-from paho.mqtt import client as mqtt_client
 from loguru import logger
-
 from message_helper import MessageHelper
 from mqtt_topic_helper import MqttTopicHelper
+from paho.mqtt import client as mqtt_client
 
 broker = os.getenv('BROKER_ADDRESS', 'localhost')
 port = 1883

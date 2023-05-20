@@ -8,6 +8,8 @@ packages = [{include = "fastlane_finale_service"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+loguru = "^0.7.0"
+paho-mqtt = "^1.6.1"
 
 
 [build-system]

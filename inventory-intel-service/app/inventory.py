@@ -9,5 +9,5 @@ class Inventory:
     def _generate_inventory(self):
         inventory = {}
         for i in range(1, 101):  # generate 100 products
-            inventory[i] = {'name': self.fake.catch_phrase(), 'stock': 100}
+            inventory[i] = {'name': self.fake.commerce.product(), 'stock': 100}
         return inventory
