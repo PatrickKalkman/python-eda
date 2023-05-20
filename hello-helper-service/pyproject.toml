@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "hello-helper-service"
+version = "0.1.0"
+description = ""
+authors = ["Patrick Kalkman <patrick@simpletechture.nl>"]
+readme = "README.md"
+packages = [{include = "hello_helper_service"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
