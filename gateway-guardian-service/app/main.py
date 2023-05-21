@@ -31,7 +31,7 @@ def publish(client):
     topic_helper = MqttTopicHelper("spectrum-grocers", "fresh-frontier")
     message_helper = MessageHelper()
 
-    while not running.is_set():  # Check the Event object instead of the flag
+    while not running.is_set():
         customer_id = random.randint(1, 10)
         topic = topic_helper.customer_arrival()
         message = message_helper.customer_arrival(customer_id)
@@ -39,14 +39,14 @@ def publish(client):
         logger.info(f"Pub to {topic}: {message}")
         client.publish(topic, message)
 
-        # Wait for a random interval between 2 and 20 seconds
-        running.wait(random.randint(2, 20))  # Use the Event's wait() method
+        running.wait(random.randint(2, 20))
 
-    client.disconnect()  # disconnect here when the loop is broken
+    client.disconnect()
 
 
+# Handle Signals for Graceful Shutdown
 def handle_signal(signum, frame):
-    running.set()  # Set the Event object when a signal is caught
+    running.set()
     print("Gracefully shutting down...")
 
 
