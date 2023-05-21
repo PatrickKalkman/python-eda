@@ -23,5 +23,5 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -f ./hello-helper-service/Dockerfile
+        docker build ./hello-helper-service/Dockerfile
 
