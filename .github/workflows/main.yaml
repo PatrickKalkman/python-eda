@@ -21,8 +21,27 @@ jobs:
       with:
         python-version: 3.11.3
 
-    - name: Build Docker image
+    - name: Build Docker image hello-helper-service
       working-directory: ./hello-helper-service
       run: |
         docker build . -t hello-helper-service
 
+    - name: Build Docker image fastlane-finale-service
+      working-directory: ./fastlane-finale-service
+      run: |
+        docker build . -t fastlane-finale-service
+
+    - name: Build Docker image gateexit-guardian-service
+      working-directory: ./gateexit-guardian-service
+      run: |
+        docker build . -t gateexit-guardian-service
+
+    - name: Build Docker image gateway-guardian-service
+      working-directory: ./gateway-guardian-service
+      run: |
+        docker build . -t gateway-guardian-service
+
+    - name: Build Docker image inventory-intel-service
+      working-directory: ./inventory-intel-service
+      run: |
+        docker build . -t inventory-intel-service
